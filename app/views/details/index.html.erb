@@ -1,0 +1,24 @@
+<h1>Details#index</h1>
+<p>Find me in app/views/details/index.html.erb</p>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>City</th>
+      <th>Transacted Amount</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @details.each do |detail| %>
+      <tr>
+        <td><%= detail.timestamp %></td>
+        <td><%= detail.city %></td>
+        <td><%= detail.transacted_amount %></td>
+        <td><%= detail.status %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
