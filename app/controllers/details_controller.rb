@@ -4,6 +4,7 @@ class DetailsController < ApplicationController
   	@total_success_trans = total_success_trans
   	@highest_value_trans = highest_value_trans
     @highest_no_trans = highest_no_trans
+    @avg_no_success_trans = avg_no_success_trans
   end
 
   def total_success_trans
@@ -28,6 +29,22 @@ class DetailsController < ApplicationController
     @allcity.each do |no_city|
       scity = Detail.where(["city = ?", no_city])
       @select_no_city +=scity if scity
+    end
+  end
+
+  def avg_no_success_trans
+    @arr_months = []
+    @arr_months_total = []
+    @divided_value = []
+    # @years = Detail.where("strftime('%Y', timestamp)     = ?", 2014)
+    for i in 1..12
+      months_success = Detail.where("strftime('%m', timestamp) + 0 = ? and status = ?", i, 'success').count
+      @arr_months[i] = months_success
+
+      months_total = Detail.where("strftime('%m', timestamp) + 0 = ?", i).count
+      @arr_months_total[i] = months_total
+
+      @divided_value[i] = @arr_months[i]/@arr_months_total[i].to_f
     end
   end
 

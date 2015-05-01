@@ -66,6 +66,16 @@
 
 
 
+<!-- Average Number od Successful Transaction in a month -->
+<h3>Average number of successful transactions in a month</h3>
+  <% value = 0%>
+  <%@divided_value.each do |div_value|%>
+    <% value += div_value.to_f %>
+  <%end%>
+  <%=(value/12).round(2)%>
+
+
+
 
 <!-- Data Dump -->
 <h4>Data Dump</h4>
