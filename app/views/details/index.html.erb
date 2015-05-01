@@ -1,6 +1,74 @@
-
+<!-- Percentage of successful Transaction -->
 <h3>Total percentage of success transactions is <%= @total_success_trans.round(2)%></h3>
 
+<!-- Total value of successful Transaction from each City -->
+<% hash_table = {}%>
+<% @select_city.each do |sel_city|%>
+  <% var1 = sel_city.city%>
+  <% var2 = sel_city.transacted_amount%>
+
+  <% if hash_table.include?(var1)%>
+    <%hash_table[var1]+=var2%>
+    <%else%>
+    <%hash_table[var1]=var2%>
+  <%end%>
+<%end%>
+
+<h3>All Cities and their total Transaction</h3>
+<%= hash_table%></br>
+
+
+<h3>City With Highest Value of Transaction</h3>
+<%= hash_table.select {|k,v| v == hash_table.values.max } %>
+
+
+
+
+<!-- Total number of successful Transaction from each City -->
+<% hash_table = {}%>
+<% @select_city.each do |sel_city|%>
+  <% var1 = sel_city.city%>
+  <% var2 = 1%>
+
+  <% if hash_table.include?(var1)%>
+    <%hash_table[var1]+=var2%>
+    <%else%>
+    <%hash_table[var1]=var2%>
+  <%end%>
+<%end%>
+
+<h3>All Cities and their total number of successful transaction</h3>
+<%= hash_table%>
+
+<h3>City with Highest number of Successful Transaction</h3>
+<%= hash_table.select {|k,v| v == hash_table.values.max } %>
+
+
+
+<!-- Total number of Transaction from each City -->
+<% hash_no_table = {}%>
+<% @select_no_city.each do |sel_no_city|%>
+  <% var1 = sel_no_city.city%>
+  <% var2 = 1%>
+
+  <% if hash_no_table.include?(var1)%>
+    <%hash_no_table[var1]+=var2%>
+    <%else%>
+    <%hash_no_table[var1]=var2%>
+  <%end%>
+<%end%>
+
+<h3>All Cities and their total number of transaction</h3>
+<%= hash_no_table%>
+
+<h3>City with Highest number of Transaction</h3>
+<%= hash_no_table.select {|k,v| v == hash_no_table.values.max } %>
+
+
+
+
+<!-- Data Dump -->
+<h4>Data Dump</h4>
 <table>
   <thead>
     <tr>
@@ -23,22 +91,3 @@
 </table>
 
 
-
-<% hash_table = {}%>
-<% @select_city.each do |sel_city|%>
-  <% var1 = sel_city.city%>
-  <% var2 = sel_city.transacted_amount%>
-
-  <% if hash_table.include?(var1)%>
-    <%hash_table[var1]+=var2%>
-    <%else%>
-    <%hash_table[var1]=var2%>
-  <%end%>
-<%end%>
-
-<h3>All Cities and their total Transaction</h3>
-<%= hash_table%></br>
-
-
-<h3>City With Highest Value of Transaction</h3>
-<%= hash_table.select {|k,v| v == hash_table.values.max } %>
