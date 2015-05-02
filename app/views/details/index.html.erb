@@ -75,6 +75,55 @@
   <%= (sum/12).round(2)%>
 
 
+<!-- Best Day for business -->
+<%to_save = [0,0,0,0,0,0,0]%>
+  <%the_day = []%>
+  <% @array_day.each do |a_day|%>
+    <% day_refer = a_day.timestamp.wday%>
+
+    <% case day_refer%>
+    <% when 0%>
+    <% to_save[day_refer] += a_day.transacted_amount%>
+    <% the_day[day_refer] = "Sunday"%>
+    <% when 1%>
+    <% to_save[day_refer] += a_day.transacted_amount%>
+    <% the_day[day_refer] = "Monday"%>
+    <% when 2%>
+    <% to_save[day_refer] += a_day.transacted_amount%>
+    <% the_day[day_refer] = "Tuesday"%>
+    <% when 3%>
+    <% to_save[day_refer] += a_day.transacted_amount%>
+    <% the_day[day_refer] = "Wednesday"%>
+    <% when 4%>
+    <% to_save[day_refer] += a_day.transacted_amount%>
+    <% the_day[day_refer] = "Thursday"%>
+    <% when 4%>
+    <% to_save[day_refer] += a_day.transacted_amount%>
+    <% the_day[day_refer] = "Friday"%>
+    <% when 6%>
+    <% to_save[day_refer] += a_day.transacted_amount%>
+    <% the_day[day_refer] = "Saturday"%>
+    <%end%>
+  <%end%>
+
+</br>
+<h4>Amount transaction according to the Day</h3>
+  <%for i in 0..6%>
+    <%=the_day[i]%>
+    =><%=to_save[i].round(2)%></br>
+
+  <%end%>
+
+</br>
+<h3>Best Day for Business</h3>
+<% highest_day = to_save.index(to_save.max)%>
+<%= the_day[highest_day]%>
+<%= to_save.max.round(2)%>
+
+
+
+
+
 
 
 <!-- Data Dump -->

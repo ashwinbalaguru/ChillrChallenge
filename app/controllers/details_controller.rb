@@ -5,6 +5,7 @@ class DetailsController < ApplicationController
   	@highest_value_trans = highest_value_trans
     @highest_no_trans = highest_no_trans
     @avg_no_success_trans = avg_no_success_trans
+    @best_day = best_day
   end
 
   def total_success_trans
@@ -45,6 +46,14 @@ class DetailsController < ApplicationController
       # @arr_months_total[i] = months_total
 
       # @divided_value[i] = @arr_months[i]/@arr_months_total[i].to_f
+    end
+  end
+
+    def best_day
+    @array_day=[]
+    find_day = Detail.where("status = ?", 'success')
+    find_day.each do |f_day|
+      @array_day << f_day
     end
   end
 
