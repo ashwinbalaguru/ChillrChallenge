@@ -34,17 +34,17 @@ class DetailsController < ApplicationController
 
   def avg_no_success_trans
     @arr_months = []
-    @arr_months_total = []
-    @divided_value = []
+    # @arr_months_total = []
+    # @divided_value = []
     # @years = Detail.where("strftime('%Y', timestamp)     = ?", 2014)
     for i in 1..12
       months_success = Detail.where("strftime('%m', timestamp) + 0 = ? and status = ?", i, 'success').count
       @arr_months[i] = months_success
 
-      months_total = Detail.where("strftime('%m', timestamp) + 0 = ?", i).count
-      @arr_months_total[i] = months_total
+      # months_total = Detail.where("strftime('%m', timestamp) + 0 = ?", i).count
+      # @arr_months_total[i] = months_total
 
-      @divided_value[i] = @arr_months[i]/@arr_months_total[i].to_f
+      # @divided_value[i] = @arr_months[i]/@arr_months_total[i].to_f
     end
   end
 
